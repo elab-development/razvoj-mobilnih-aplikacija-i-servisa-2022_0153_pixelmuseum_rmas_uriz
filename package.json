@@ -2,7 +2,6 @@
   "name": "razvoj-mobilnih-aplikacija-i-servisa-2022_0153_pixelmuseum_rmas_uriz",
   "version": "1.0.0",
   "dependencies": {
-    "@expo/ui": "~56.0.18",
     "@react-navigation/native": "^7.3.4",
     "@react-navigation/native-stack": "^7.17.6",
     "expo": "~56.0.12",
@@ -29,14 +28,15 @@
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
+    "cross-env": "^10.1.0",
     "typescript": "~6.0.3"
   },
   "scripts": {
-    "start": "expo start",
+    "start": "cross-env EXPO_ROUTER_DISABLE_RN_NAVIGATION_CHECK=1 expo start",
     "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
+    "android": "cross-env EXPO_ROUTER_DISABLE_RN_NAVIGATION_CHECK=1 expo start --android",
+    "ios": "cross-env EXPO_ROUTER_DISABLE_RN_NAVIGATION_CHECK=1 expo start --ios",
+    "web": "cross-env EXPO_ROUTER_DISABLE_RN_NAVIGATION_CHECK=1 expo start --web",
     "lint": "expo lint"
   },
   "private": true

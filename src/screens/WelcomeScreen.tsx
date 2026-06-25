@@ -1,4 +1,5 @@
 import {
+  Dimensions,
   Image,
   Pressable,
   SafeAreaView,
@@ -6,6 +7,8 @@ import {
   Text,
   View,
 } from "react-native";
+
+const { width: screenWidth } = Dimensions.get("window");
 
 const COLORS = {
   background: "#FFFFFF",
@@ -20,6 +23,7 @@ const COLORS = {
 };
 
 const SPACING = {
+  xs: 8,
   small: 12,
   medium: 20,
   large: 24,
@@ -112,86 +116,103 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.large,
     paddingVertical: SPACING.medium,
     justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
   },
   headerTitle: {
     color: COLORS.background,
     fontSize: 18,
     fontWeight: "700",
+    letterSpacing: 0.5,
   },
   content: {
     flex: 1,
     paddingHorizontal: SPACING.large,
-    paddingTop: SPACING.large,
+    paddingVertical: SPACING.xlarge,
     justifyContent: "space-between",
   },
   heroText: {
     alignItems: "center",
-    gap: SPACING.small,
+    gap: SPACING.xs,
+    marginBottom: SPACING.medium,
   },
   title: {
-    fontSize: 34,
+    fontSize: 36,
     fontWeight: "800",
     color: COLORS.textTitle,
     textAlign: "center",
-    marginBottom: SPACING.small,
+    letterSpacing: -0.5,
+    marginBottom: SPACING.xs,
   },
   subtitle: {
     fontSize: 16,
     color: COLORS.textBody,
     textAlign: "center",
     lineHeight: 24,
-    marginHorizontal: SPACING.small,
+    marginHorizontal: SPACING.xs,
+    fontWeight: "500",
   },
   imageCard: {
     width: "100%",
     borderRadius: 32,
     backgroundColor: COLORS.surface,
     padding: SPACING.medium,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 16 },
-    shadowOpacity: 0.08,
+    shadowColor: "#5F29CE",
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.12,
     shadowRadius: 24,
-    elevation: 6,
-    marginBottom: SPACING.large,
+    elevation: 8,
+    marginBottom: SPACING.xlarge,
     alignItems: "center",
+    overflow: "hidden",
   },
   heroImage: {
     width: "100%",
-    height: 340,
+    height: Math.min(screenWidth * 0.75, 340),
   },
   actions: {
     width: "100%",
-    marginBottom: SPACING.large,
+    marginBottom: SPACING.xlarge,
   },
   secondaryActions: {
     flexDirection: "row",
-    justifyContent: "space-between",
     gap: SPACING.small,
+    justifyContent: "space-between",
   },
   button: {
     borderRadius: 16,
     justifyContent: "center",
     alignItems: "center",
-    minHeight: 52,
+    minHeight: 54,
     paddingHorizontal: SPACING.large,
   },
   primaryButton: {
     backgroundColor: COLORS.primary,
     marginBottom: SPACING.medium,
+    shadowColor: COLORS.primary,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.25,
+    shadowRadius: 16,
+    elevation: 6,
   },
   secondaryButton: {
-    backgroundColor: COLORS.background,
-    borderWidth: 1,
+    backgroundColor: COLORS.card,
+    borderWidth: 2,
     borderColor: COLORS.border,
     flex: 1,
   },
   buttonPressed: {
-    opacity: 0.9,
+    opacity: 0.88,
+    transform: [{ scale: 0.98 }],
   },
   buttonLabel: {
     color: COLORS.background,
     fontSize: 16,
     fontWeight: "700",
+    letterSpacing: 0.3,
   },
   secondaryButtonLabel: {
     color: COLORS.primary,
