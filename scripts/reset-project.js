@@ -2,7 +2,7 @@
 
 /**
  * This script is used to reset the project to a blank state.
- * It deletes or moves the /src and /scripts directories to /example based on user input and creates a new /src/app directory with an index.tsx and _layout.tsx file.
+ * It deletes or moves the /src and /scripts directories to /example based on user input and creates a new App.tsx root entry file.
  * You can remove the `reset-project` script from package.json and safely delete this file after running it.
  */
 
@@ -13,15 +13,15 @@ const readline = require("readline");
 const root = process.cwd();
 const oldDirs = ["src", "scripts"];
 const exampleDir = "example";
-const newAppDir = "src/app";
+const rootAppPath = "App.tsx";
 const exampleDirPath = path.join(root, exampleDir);
 
-const indexContent = `import { Text, View, StyleSheet } from "react-native";
+const appContent = `import { Text, View, StyleSheet } from "react-native";
 
-export default function Index() {
+export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Edit src/app/index.tsx to edit this screen.</Text>
+      <Text>Edit App.tsx to edit the main application entry point.</Text>
     </View>
   );
 }
@@ -33,13 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-`;
-
-const layoutContent = `import { Stack } from "expo-router";
-
-export default function RootLayout() {
-  return <Stack />;
-}
 `;
 
 const rl = readline.createInterface({
@@ -72,28 +65,18 @@ const moveDirectories = async (userInput) => {
       }
     }
 
-    // Create new /src/app directory
-    const newAppDirPath = path.join(root, newAppDir);
-    await fs.promises.mkdir(newAppDirPath, { recursive: true });
-    console.log("\n📁 New /src/app directory created.");
-
-    // Create index.tsx
-    const indexPath = path.join(newAppDirPath, "index.tsx");
-    await fs.promises.writeFile(indexPath, indexContent);
-    console.log("📄 src/app/index.tsx created.");
-
-    // Create _layout.tsx
-    const layoutPath = path.join(newAppDirPath, "_layout.tsx");
-    await fs.promises.writeFile(layoutPath, layoutContent);
-    console.log("📄 src/app/_layout.tsx created.");
+    // Create root App.tsx file
+    const appPath = path.join(root, rootAppPath);
+    await fs.promises.writeFile(appPath, appContent);
+    console.log("📄 App.tsx created.");
 
     console.log("\n✅ Project reset complete. Next steps:");
     console.log(
-      `1. Run \`npx expo start\` to start a development server.\n2. Edit src/app/index.tsx to edit the main screen.\n3. Put all your application code in /src, only screens and layout files should be in /src/app.${
+      `1. Run \`npx expo start\` to start a development server.\n2. Edit App.tsx to edit the main application entry point.${
         userInput === "y"
-          ? `\n4. Delete the /${exampleDir} directory when you're done referencing it.`
+          ? `\n3. Delete the /${exampleDir} directory when you're done referencing it.`
           : ""
-      }`
+      }`,
     );
   } catch (error) {
     console.error(`❌ Error during script execution: ${error.message}`);
@@ -110,5 +93,5 @@ rl.question(
       console.log("❌ Invalid input. Please enter 'Y' or 'N'.");
       rl.close();
     }
-  }
+  },
 );
