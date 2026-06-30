@@ -9,7 +9,13 @@ import {
   View,
 } from "react-native";
 
-export default function LoginScreen() {
+type LoginScreenProps = {
+  navigation: {
+    navigate: (screen: string) => void;
+  };
+};
+
+export default function LoginScreen({ navigation }: LoginScreenProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -82,7 +88,7 @@ export default function LoginScreen() {
           </Text>
         </Pressable>
 
-        <Pressable>
+        <Pressable onPress={() => navigation.navigate("Register")}>
           <Text style={styles.registerText}>
             Don't have an account? Register
           </Text>
