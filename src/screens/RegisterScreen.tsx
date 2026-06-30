@@ -48,6 +48,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
     setTimeout(() => {
       console.log("Register pressed:", { fullName, email, username });
       setIsLoading(false);
+      navigation.navigate("Profile");
     }, 1000);
   };
 
@@ -148,12 +149,12 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#FFFFFF",
-    justifyContent: "center",
-    padding: 24,
-  },
+ container: {
+  flex: 1,
+  backgroundColor: "#C09FDE",
+  justifyContent: "center",
+  padding: 24,
+},
 
   card: {
     backgroundColor: "#C09FDE",

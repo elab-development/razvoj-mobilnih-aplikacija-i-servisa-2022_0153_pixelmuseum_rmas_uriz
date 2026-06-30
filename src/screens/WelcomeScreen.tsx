@@ -7,13 +7,7 @@ import {
   View,
 } from "react-native";
 
-type WelcomeScreenProps = {
-  navigation: {
-    navigate: (screen: string) => void;
-  };
-};
-
-export default function WelcomeScreen({ navigation }: WelcomeScreenProps) {
+export default function WelcomeScreen({ navigation }: any) {
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -27,14 +21,15 @@ export default function WelcomeScreen({ navigation }: WelcomeScreenProps) {
           style={styles.heroImage}
         />
 
-        <Text style={styles.title}>Pixel Museum</Text>
+        <Text style={styles.title}>
+          Pixel{"\n"}Museum
+        </Text>
 
         <Pressable
           style={styles.primaryButton}
           onPress={() => navigation.navigate("Login")}
         >
           <Text style={styles.primaryButtonText}>Log In</Text>
-          <Text style={styles.arrow}>→</Text>
         </Pressable>
 
         <Pressable
@@ -42,7 +37,6 @@ export default function WelcomeScreen({ navigation }: WelcomeScreenProps) {
           onPress={() => navigation.navigate("Register")}
         >
           <Text style={styles.secondaryButtonText}>Create Account</Text>
-          <Text style={styles.secondaryArrow}>→</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -59,79 +53,62 @@ const styles = StyleSheet.create({
   content: {
     alignItems: "center",
     zIndex: 2,
-    marginBottom: 80,
+    marginBottom: 105,
   },
   heroImage: {
-    width: 285,
-    height: 285,
+    width: 270,
+    height: 270,
     resizeMode: "contain",
-    marginBottom: 10,
+    marginBottom: 6,
   },
   title: {
-    fontSize: 48,
+    fontSize: 62,
+    lineHeight: 64,
     fontWeight: "900",
     color: "#FFFFFF",
     textAlign: "center",
     textShadowColor: "#4A148C",
     textShadowOffset: { width: 2, height: 4 },
     textShadowRadius: 8,
-    marginBottom: 42,
-    letterSpacing: 0.5,
+    marginBottom: 30,
+    letterSpacing: 0.3,
   },
   primaryButton: {
-    width: "82%",
-    height: 54,
-    borderRadius: 18,
+    width: "72%",
+    height: 48,
+    borderRadius: 16,
     backgroundColor: "#5F29CE",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 16,
-    flexDirection: "row",
-    position: "relative",
+    marginBottom: 12,
   },
   primaryButtonText: {
     color: "#FFFFFF",
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: "800",
   },
-  arrow: {
-    position: "absolute",
-    right: 24,
-    color: "#FFFFFF",
-    fontSize: 30,
-    fontWeight: "700",
-  },
   secondaryButton: {
-    width: "82%",
-    height: 54,
-    borderRadius: 18,
+    width: "72%",
+    height: 48,
+    borderRadius: 16,
     borderWidth: 2,
     borderColor: "#5F29CE",
     backgroundColor: "rgba(255,255,255,0.25)",
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "row",
-    position: "relative",
   },
   secondaryButtonText: {
     color: "#4A148C",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "800",
-  },
-  secondaryArrow: {
-    position: "absolute",
-    right: 24,
-    color: "#4A148C",
-    fontSize: 30,
-    fontWeight: "700",
   },
   galleryBottom: {
     position: "absolute",
-    bottom: -10,
-    left: -20,
-    width: "112%",
-    height: 260,
+    bottom: -18,
+    left: -70,
+    width: "145%",
+    height: 360,
     resizeMode: "cover",
-    opacity: 0.42,
+    opacity: 0.5,
   },
 });
