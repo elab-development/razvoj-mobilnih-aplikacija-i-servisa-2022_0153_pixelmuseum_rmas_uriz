@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ArtworkDetailsScreen from "../screens/ArtworkDetailsScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import GalleryScreen from "../screens/GalleryScreen";
 import LoginScreen from "../screens/LoginScreen";
@@ -24,6 +25,7 @@ export default function AppNavigator() {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Gallery" component={GalleryScreen} />
+      <Stack.Screen name="ArtworkDetails" component={ArtworkDetailsScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="Favorites" component={FavoritesScreen} />
     </Stack.Navigator>

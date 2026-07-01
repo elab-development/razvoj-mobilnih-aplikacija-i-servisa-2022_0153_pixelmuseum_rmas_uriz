@@ -16,6 +16,12 @@ type ArtworkItem = {
   image: number;
 };
 
+type GalleryScreenProps = {
+  navigation: {
+    navigate: (screen: string, params?: { artwork: ArtworkItem }) => void;
+  };
+};
+
 const artworks: ArtworkItem[] = [
   {
     id: "painting1",
@@ -61,7 +67,7 @@ const artworks: ArtworkItem[] = [
   },
 ];
 
-export default function GalleryScreen() {
+export default function GalleryScreen({ navigation }: GalleryScreenProps) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -77,24 +83,26 @@ export default function GalleryScreen() {
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Image
-              source={item.image}
-              style={styles.image}
-              resizeMode="cover"
-            />
+          <Pressable
+            style={styles.card}
+            onPress={() => navigation.navigate("ArtworkDetails", { artwork: item })}
+          >
+            <Image source={item.image} style={styles.image} resizeMode="cover" />
 
             <View style={styles.cardBody}>
               <Text style={styles.cardTitle}>{item.title}</Text>
               <Text style={styles.cardCategory}>{item.category}</Text>
               <Text style={styles.cardArtist}>{item.artist}</Text>
 
-              <Pressable style={styles.favoriteButton}>
+              <Pressable
+                style={styles.favoriteButton}
+                onPress={(event) => event.stopPropagation()}
+              >
                 <Text style={styles.favoriteIcon}>♡</Text>
                 <Text style={styles.favoriteText}>Save</Text>
               </Pressable>
             </View>
-          </View>
+          </Pressable>
         )}
       />
     </SafeAreaView>
